@@ -1,8 +1,8 @@
-package map
+package main
 
 import "fmt"
 
-func map() {
+func maps() {
 
 	websites := map[string]string{
 		"Google":              "https://www.google.com",

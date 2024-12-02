@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+type Product struct {
+	title string
+	id    string
+	price float64
+}
+
 // func main() {
 // 	productName := [4]string{"ade", "john", "kay", "kim"}
 // 	prices := [4]float64{10.99, 9.99, 45.99, 20.0}
@@ -23,17 +29,69 @@ import "fmt"
 // }
 
 //dynamic lists with slices
+// func main() {
+// 	//usign this we can append more into the array
+// 	prices := []float64{10.99, 8.99}
+// 	fmt.Println(prices[0:1])
+// 	prices[1] = 9.99
+
+// 	// adding new prices using append
+// 	updatedPrices := append(prices, 5.99)
+// 	fmt.Println(updatedPrices, prices)
+
+// 	//re assign new slice to prices
+// 	prices = append(prices, 5.99)
+// 	fmt.Println(updatedPrices, prices)
+// }
+
 func main() {
-	//usign this we can append more into the array
-	prices := []float64{10.99, 8.99}
-	fmt.Println(prices[0:1])
-	prices[1] = 9.99
+	//array with max lenght
+	hobbies := [3]string{"Coding", "music", "playing"}
+	fmt.Println(hobbies)
 
-	// adding new prices using append
-	updatedPrices := append(prices, 5.99)
-	fmt.Println(updatedPrices, prices)
+	//access first element
+	fmt.Println(hobbies[0])
+	//access second and third  element
+	futureHobbies := hobbies[1:3]
+	fmt.Println(futureHobbies)
+	//access first and second  element
+	fmt.Println(hobbies[0:2])
 
-	//re assign new slice to prices
-	prices = append(prices, 5.99)
-	fmt.Println(updatedPrices, prices)
+	//dynamic array with no lenght
+	goal := []string{"master-go", "backend"}
+	fmt.Println(goal)
+
+	//change the last array
+	goal[1] = "backend-dev"
+
+	//add brand new third goal
+	goal = append(goal, "learning all basic")
+	fmt.Println(goal)
+
+	//creating dynamic array
+	products := []Product{
+		{
+			"first-product",
+			"A first product",
+			12.99,
+		},
+		{
+			"second-product",
+			"A second product",
+			132.99,
+		},
+	}
+
+	fmt.Println(products)
+
+	//add brand new third product
+	newProduct := Product{
+		"third-product",
+		"A third product",
+		122.99,
+	}
+
+	products = append(products, newProduct)
+
+	fmt.Println(products)
 }
