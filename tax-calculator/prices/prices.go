@@ -31,10 +31,14 @@ func (job *TaxIncludedPriceJob) LoadData() error {
 }
 
 // adding reciever method before function name
-func (job *TaxIncludedPriceJob) Process() error {
+func (job *TaxIncludedPriceJob) Process(doneChan chan bool, errorChan chan error) {
 	err := job.LoadData()
+
+	//sending error through channels
 	if err != nil {
-		return err
+		// return err
+		errorChan <- err
+		return
 	}
 	result := make(map[string]string)
 	for _, price := range job.InputPrice {
@@ -46,7 +50,8 @@ func (job *TaxIncludedPriceJob) Process() error {
 	// fmt.Println(result)
 	//OR WRITE TOT FILE
 	job.TaxIncludePrices = result
-	return job.IOManager.WriteResult(job)
+	job.IOManager.WriteResult(job)
+	doneChan <- true
 
 }
 
